@@ -1,0 +1,9 @@
+node_modules/
+out/
+.next/
+*.zip
+*.log
+*.bak*
+public/img/
+data/articles.json
+growlio-src/

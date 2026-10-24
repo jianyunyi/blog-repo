@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="512" height="512" role="img" aria-label="出海实操教程">
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="50" cy="50" r="34" stroke="#101828" stroke-width="6"/>
+<ellipse cx="50" cy="50" rx="14" ry="34" stroke="#101828" stroke-width="4.5"/>
+<path d="M16 50H84" stroke="#101828" stroke-width="4.5"/>
+<path d="M30 70C46 68 62 56 82 24M68 29L82 24L84.5 38.8" stroke="#fff" stroke-width="15"/>
+<path d="M30 70C46 68 62 56 82 24M68 29L82 24L84.5 38.8" stroke="#2B59FF" stroke-width="6.5"/>
+</g>
+<circle cx="30" cy="70" r="9" fill="#fff"/><circle cx="30" cy="70" r="5.5" fill="#2B59FF"/>
+</svg>

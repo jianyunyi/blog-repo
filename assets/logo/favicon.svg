@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<style>@media (prefers-color-scheme:dark){.r{stroke:#F2F5FB}.k{stroke:#0B1220}.a{stroke:#6C8CFF}}</style>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<circle class="r" cx="50" cy="50" r="34" stroke="#101828" stroke-width="10"/>
+<path class="k" d="M30 70C46 68 62 56 82 24M68 29L82 24L84.5 38.8" stroke="#fff" stroke-width="20"/>
+<path class="a" d="M30 70C46 68 62 56 82 24M68 29L82 24L84.5 38.8" stroke="#2B59FF" stroke-width="11"/>
+</g></svg>
