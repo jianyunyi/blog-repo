@@ -79,6 +79,11 @@ HTTPS 证书由 Cloudflare 自动签发，不用你操心。
   - Next.js 部署方式变了：旧的 `@cloudflare/next-on-pages` 已弃用，纯静态路线最稳，避开这个坑
 - **未验证提示**：有 2026-02 的中文实测帖称 `pages.dev` 在国内可能打不开（单信源，未独立验证）——如果你的客户主要在国内，直接绑定自定义域名即可；面向海外客户则无此问题。
 
+
+相关阅读：
+- [GitHub Pages 免费建站](https://jianyunyi.gv.uy/posts/2026-10-21-免费建站-github-pages图文教程.html)
+- [Cloudflare R2 免费 10GB 图床](https://jianyunyi.gv.uy/posts/2026-10-24-免费建站-cloudflarer2图床图文教程.html)
+
 ## 来源
 
 官方（2026-10-17 实际打开验证）：

@@ -63,6 +63,11 @@ DNS 生效从几分钟到几小时不等，别急，睡一觉再看一般都好�
 
 - **前科审查通过：** 2008 年上线至今，长期免费，没有批量封号、悄悄收费、突然下线的黑历史，放心用。
 
+
+相关阅读：
+- [Cloudflare Pages 免费建站](https://jianyunyi.gv.uy/posts/2026-10-17-免费建站-cloudflare-pages图文教程.html)
+- [Serv00 永久免费主机](https://jianyunyi.gv.uy/posts/2026-10-21-serv00永久免费主机攻略.html)
+
 ## 来源
 
 - 2026 年免费建站（含自定义域名）横评：https://dev.to/mryadavgulshan/best-free-website-hosting-with-custom-domain-in-2026-122i

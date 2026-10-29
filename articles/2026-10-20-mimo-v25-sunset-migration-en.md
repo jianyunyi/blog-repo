@@ -1,4 +1,4 @@
-# MiMo-V2.5 Goes Offline Tomorrow at 10:00: Your V2.6 Migration Checklist (Oct 20, 2026)
+# MiMo V2.5 Sunset Migration: Your V2.6 Migration Checklist (Retires Oct 21, 2026 at 10:00)
 
 > One-line takeaway: Xiaomi's official notice: `mimo-v2.5-pro` / `mimo-v2.5` retire on Oct 21, 2026 at 10:00 (UTC+8). If your code still references the old model names, spend 10 minutes switching today — requests will fail outright tomorrow.
 

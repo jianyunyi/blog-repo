@@ -62,6 +62,9 @@
 2. Cloudflare Email Routing 没有邮箱存储：目标邮箱一旦丢失访问权就断；一条规则只能到一个目标地址，多人分流要写 Worker。
 3. 同类服务的前科提醒：Skiff 2024 年被 Notion 收购后关停——纯转发类服务换成本低，关键邮件别只走转发。
 
+
+相关阅读：[Zoho Mail 免费域名邮箱](https://jianyunyi.gv.uy/posts/2026-10-21-zohomail免费域名邮箱全攻略.html)
+
 ## 来源
 
 - Cloudflare Email Routing 限制文档（2026-09-25 更新，2026-10-16 实测）：https://developers.cloudflare.com/email-routing/limits/

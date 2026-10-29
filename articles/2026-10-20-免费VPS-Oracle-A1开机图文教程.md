@@ -64,6 +64,9 @@ sudo netfilter-persistent save
 - **注册被拒自查**：资料与卡账单不一致、用虚拟卡、挂代理注册、短时间内反复提交——占了任何一条都容易被风控。真实信息 + 真实 IP + 一次过。
 - **能拿它干嘛**：跑 Docker 应用、搭个人博客/导航站、自建 VPN、跑定时脚本、挂小型 AI 推理——12G 内存塞个量化小模型都够。
 
+
+相关阅读：[免费 VPS 横评](https://jianyunyi.gv.uy/posts/2026-10-17-免费vps横评.html)
+
 ## 来源
 
 - Oracle 免费注册页（注册流程、绑卡说明）：https://www.oracle.com/cloud/free/

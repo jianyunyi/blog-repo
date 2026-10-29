@@ -1,4 +1,4 @@
-# Gemini 4 Carbon Is Here — but Almost Nobody Can Use It Yet
+# Google Gemini 4 Carbon Launch: Top-Ranked Model, but Almost Nobody Can Use It Yet (Announced Oct 28, 2026)
 
 **One-line takeaway:** On 28 October 2026, Google DeepMind announced Gemini 4 Carbon, its strongest model yet, built for cybersecurity and long-horizon engineering work — and it topped the independent Artificial Analysis Intelligence Index v5 at 59 points. But "announced" is not "available": first access goes to a small group of cyber defenders, with no public date for developers, businesses, or consumers. Today's guide is about verifying the news, waiting correctly, and avoiding the scams that always follow a launch like this — not about pretending there is a sign-up form.
 

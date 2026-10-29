@@ -36,6 +36,9 @@ Google Cloud 官方免费功能文档写明 Compute Engine 的免费额度：每
 - **和甲骨文的区别：** 甲骨文 A1 是 2 核 12GB 但要蹲容量（本站 2026-10-20 开机实录），GCP e2-micro 是 1 核 1GB 但不用蹲、随时能开——要性能蹲甲骨文，要稳妥开 GCP，别拿两者的优点拼成一台不存在的机器。
 - **免费额度会变：** 官方文档注明免费额度"不设到期日，但可能变更"，动手前以 docs.cloud.google.com/free/docs/free-cloud-features 当前版本为准。
 
+
+相关阅读：[免费 VPS 横评](https://jianyunyi.gv.uy/posts/2026-10-17-免费vps横评.html)
+
 ## 来源
 
 - Google Cloud 免费功能官方文档：https://docs.cloud.google.com/free/docs/free-cloud-features

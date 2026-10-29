@@ -61,6 +61,9 @@ Windscribe（ https://windscribe.com ）免费档：**验证邮箱后每月 10GB
 
 **坑点重申**：① 免费 VPN 没有"稳定可用"的，大陆封锁是动态对抗，今天能连不代表明天能连；② 官网被墙，注册/下载/登录/调协议四件事必须提前在墙外做完；③ 别在免费 VPN 上登录重要金融账户做大额操作；④ 2026 年三家均无批量封号/悄悄收费/突然下线的前科，Proton 的免费承诺可信度最高。
 
+
+相关阅读：[2026 真免费 VPN 横评](https://jianyunyi.gv.uy/posts/2026-10-21-免费vpn-2026横评图文教程.html)
+
 ## 来源
 
 - Proton VPN 定价页（2026-10-16 浏览器实测）：https://www.protonvpn.com/pricing

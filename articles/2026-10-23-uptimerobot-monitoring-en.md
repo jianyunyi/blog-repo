@@ -1,4 +1,4 @@
-# Your Site Went Down at 3 AM and Nobody Told You? Add Free Downtime Alerts in 5 Minutes with UptimeRobot
+# Free Downtime Monitoring with UptimeRobot: Add Downtime Alerts to Your Site in 5 Minutes
 
 > One-line takeaway: UptimeRobot's free tier gives you 50 monitors, checks every 5 minutes, and free email alerts — signup to first alert genuinely takes about 5 minutes. But since December 2024 the free plan is personal, non-commercial use only, so don't put a revenue-generating store on it. This walkthrough covers the real limits plus the three-step setup.
 

@@ -1,4 +1,4 @@
-# OpenAI 昨天又发新模型：GPT-6.1 Terra 半价上线，先搞清它在哪能用
+# OpenAI GPT-6.1 Terra 半价上线：价格、入口与适用场景实测（2026-10-26 发布）
 
 **一句话导读：** 2026 年 10 月 26 日，OpenAI 发布 GPT-6.1 Terra：API 输入 $1/百万 token、输出 $5/百万 token，比上一代便宜一半，但它只出现在 ChatGPT Work 和 Codex 里，不在普通 ChatGPT 对话和免费档里。
 

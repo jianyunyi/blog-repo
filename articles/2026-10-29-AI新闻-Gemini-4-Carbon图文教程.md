@@ -1,4 +1,4 @@
-# AI 新闻：Google Gemini 4 Carbon 图文教程——昨天刚发布的新王，但普通人现在还用不上
+# Google Gemini 4 Carbon 发布：最强模型登顶，普通人现在还用不上（2026-10-28 发布）
 
 **一句话导读：** 2026 年 10 月 28 日，Google DeepMind 发布 Gemini 4 Carbon，自称“最强模型”，主打网络安全和长程工程任务，独立榜单 Artificial Analysis Intelligence Index v5 直接登顶 59 分。但先别急着找入口：首批只给一小部分网络安全防御者，开发者、企业和普通用户都没有公开时间表——今天这篇教你怎么核实、怎么等、怎么防骗，而不是假装能教你“开通 Carbon”。
 

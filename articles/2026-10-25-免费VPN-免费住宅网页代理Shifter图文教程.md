@@ -60,6 +60,9 @@
 - **免费版 / 试用 / 退款保证是三回事：** NordVPN、Surfshark 等的 7 天试用均需先绑卡或支付方式，到期自动扣费，那不是永久免费。
 - **避雷名单（只作避雷，不推荐）：** Hola（2015 年被曝把免费用户带宽经 Luminati 出售作出口节点）；SuperVPN / GeckoVPN / ChatVPN（2021 年 2100 万条用户记录数据库外泄）；UFO VPN（2020 年自称严格无日志却曝出 894GB 未设防数据库）；Urban VPN（2025 年 7 月被曝扩展抓取 AI 对话内容传向数据经纪商）；FreeVPN.One（约 2026 年 10 月 21 日 YouTube 调查视频披露秘密截屏，属视频披露、待独立核实，不可写成已定论）。
 
+
+相关阅读：[2026 真免费 VPN 横评](https://jianyunyi.gv.uy/posts/2026-10-21-免费vpn-2026横评图文教程.html)
+
 ## 来源
 
 - Shifter 免费网页代理官网：https://shifter.io/web-proxy
