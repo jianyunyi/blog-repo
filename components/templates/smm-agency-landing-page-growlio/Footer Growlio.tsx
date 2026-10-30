@@ -360,7 +360,7 @@ const Footer = ({ anchorPrefix = '' }: { anchorPrefix?: string }) => {
       `}</style>
       
       {isMobile ? (
-        <div style={{ width: '100%', backgroundColor: '#1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden', position: 'relative', paddingTop: '60px' }}>
+        <div id="footer" style={{ width: '100%', backgroundColor: '#1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', overflow: 'hidden', position: 'relative', paddingTop: '60px' }}>
           
           <motion.h1 
             style={{ fontSize: '60px', lineHeight: '64px', textAlign: 'center', color: '#FAFBDC', margin: '0 20px 40px', fontFamily: '"Goudy Old Style", serif' }}

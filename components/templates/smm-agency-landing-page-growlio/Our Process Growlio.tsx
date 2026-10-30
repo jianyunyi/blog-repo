@@ -704,7 +704,7 @@ const Process = () => {
 
   if (isMobile) {
     return (
-      <div style={{ width: '100%', backgroundColor: '#034F47', padding: '60px 20px', boxSizing: 'border-box' }}>
+      <div id="process" style={{ width: '100%', backgroundColor: '#034F47', padding: '60px 20px', boxSizing: 'border-box' }}>
         <style>
           {`
             @keyframes processMarquee {

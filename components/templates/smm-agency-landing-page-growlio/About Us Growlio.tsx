@@ -42,7 +42,7 @@ const About = () => {
   }, []);
 
   return (
-    <div style={isMobile ? { ...styles.fullWidthWrapper, height: 'auto', minHeight: '100vh', paddingBottom: '0' } : { ...styles.fullWidthWrapper, height: `${889 * scale}px`, minHeight: '100vh' }}>
+    <div id="about" style={isMobile ? { ...styles.fullWidthWrapper, height: 'auto', minHeight: '100vh', paddingBottom: '0' } : { ...styles.fullWidthWrapper, height: `${889 * scale}px`, minHeight: '100vh' }}>
       <div style={isMobile ? {
         width: '100%',
         display: 'flex',

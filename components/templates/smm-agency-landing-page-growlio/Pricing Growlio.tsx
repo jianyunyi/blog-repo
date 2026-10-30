@@ -8,7 +8,7 @@ const TIER_PHASE: Record<string, string> = { start: '从零开始', steady: '系
 
 const Pricing = () => {
   return (
-    <section className="pricing-section">
+    <section id="pricing" className="pricing-section">
       <style>{`
         .pricing-section {
           width: 100%;

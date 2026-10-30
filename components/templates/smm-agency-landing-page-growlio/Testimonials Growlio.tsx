@@ -202,7 +202,7 @@ const Testimonials = () => {
       `}</style>
       
       {isMobile ? (
-        <div style={{ width: '100%', backgroundColor: '#FAFADC', padding: '60px 20px', boxSizing: 'border-box', overflow: 'hidden' }}>
+        <div id="testimonials" style={{ width: '100%', backgroundColor: '#FAFADC', padding: '60px 20px', boxSizing: 'border-box', overflow: 'hidden' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', marginBottom: '40px' }}>
             <div className="testimonials-tag">
               <div className="testimonials-tag-dot"></div>

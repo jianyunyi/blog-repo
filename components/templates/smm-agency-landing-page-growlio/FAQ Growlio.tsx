@@ -335,7 +335,7 @@ const FAQ = () => {
       `}</style>
       
       {isMobile ? (
-        <div style={{ width: '100%', backgroundColor: '#FAFADC', padding: '60px 20px', boxSizing: 'border-box' }}>
+        <div id="faq" style={{ width: '100%', backgroundColor: '#FAFADC', padding: '60px 20px', boxSizing: 'border-box' }}>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', marginBottom: '40px' }}>
             <div className="faq-tag">
               <div className="faq-tag-dot"></div>
