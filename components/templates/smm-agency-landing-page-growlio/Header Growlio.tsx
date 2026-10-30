@@ -99,7 +99,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
   }));
 
   return (
-    <div style={!showHero ? styles.navOnlyWrapper : (isMobile ? { ...styles.fullWidthWrapper, height: 'auto', minHeight: '100vh', padding: '20px', boxSizing: 'border-box', position: 'relative' } : styles.fullWidthWrapper)}>
+    <div className={showHero ? 'gh-wrapper gh-hero-on' : 'gh-wrapper'} style={!showHero ? styles.navOnlyWrapper : (isMobile ? { ...styles.fullWidthWrapper, height: 'auto', minHeight: '100vh', padding: '20px', boxSizing: 'border-box', position: 'relative' } : styles.fullWidthWrapper)}>
       {/* showHero=false (second-level pages): collapse to a plain nav bar.
           The hero layout reserves height:'100vh' on this wrapper plus a fixed
           805px container below it; with the hero hidden those kept reserving a
@@ -128,9 +128,26 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
         .nav-item:hover span {
           animation: textSlideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
+
+        /* Mobile layout, CSS-driven (2026-10-30): does not depend on the JS
+           isMobile switch. Stylesheet !important beats inline styles, so these
+           force the desktop 1440px canvas into a stacked phone layout even if
+           JS hydration never flips isMobile. Scoped to hero mode only. */
+        @media (max-width: 768px) {
+          .gh-hero-on { height: auto !important; min-height: 100vh !important; padding: 20px !important; box-sizing: border-box !important; overflow: hidden !important; display: block !important; }
+          .gh-hero-on .gh-container { width: 100% !important; height: auto !important; max-width: 100% !important; transform: none !important; display: flex !important; flex-direction: column !important; align-items: center !important; position: relative !important; }
+          .gh-hero-on .gh-nav { position: absolute !important; top: 0 !important; left: 0 !important; width: 100% !important; height: auto !important; padding: 20px !important; box-sizing: border-box !important; justify-content: space-between !important; }
+          .gh-hero-on .gh-menu-desktop { display: none !important; }
+          .gh-hero-on .gh-cta-desktop { display: none !important; }
+          .gh-hero-on .gh-hero { position: relative !important; width: 100% !important; left: auto !important; top: auto !important; display: flex !important; flex-direction: column !important; align-items: center !important; text-align: center !important; gap: 20px !important; padding-top: 112px !important; z-index: 20 !important; }
+          .gh-hero-on .gh-hero-title { font-size: 44px !important; line-height: 1.15 !important; width: 100% !important; }
+          .gh-hero-on .gh-hero-media { position: relative !important; width: 100% !important; height: 400px !important; right: auto !important; bottom: auto !important; border-radius: 24px !important; overflow: hidden !important; margin-top: 24px !important; }
+          .gh-hero-on .gh-hero-media video { border-radius: inherit !important; }
+          .gh-hero-on .gh-icons { display: none !important; }
+        }
       `}</style>
 
-      <div style={!showHero ? styles.navOnlyContainer : (isMobile ? {
+      <div className="gh-container" style={!showHero ? styles.navOnlyContainer : (isMobile ? {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -138,7 +155,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
       } : { ...styles.container, transform: `scale(${scale})` })}>
         
         {/* Navigation Bar */}
-        <div style={!showHero ? styles.navOnlyBar : (isMobile ? {
+        <div className="gh-nav" style={!showHero ? styles.navOnlyBar : (isMobile ? {
           display: 'flex',
           position: 'absolute',
           top: 0,
@@ -157,7 +174,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
           </a>
 
           {!isMobile && (
-            <div style={styles.menuGroup}>
+            <div className="gh-menu-desktop" style={styles.menuGroup}>
               {navItems.map((item, idx) => (
                 <a key={idx} href={item.href} style={{ textDecoration: 'none' }} className="nav-item">
                   <div style={styles.menuItem}>
@@ -178,7 +195,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
               </svg>
             </div>
           ) : (
-            <a href="/articles" className="nav-item" style={{ textDecoration: 'none' }}>
+            <a href="/articles" className="nav-item gh-cta-desktop" style={{ textDecoration: 'none' }}>
               <div style={styles.startProject}>
                 <div style={{ ...styles.menuDot, backgroundColor: '#024F47' }}></div>
                 <span style={styles.startProjectText}>最新教程</span>
@@ -221,7 +238,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
         {showHero && (
         <>
         {/* Hero Content */}
-        <div style={isMobile ? {
+        <div className="gh-hero" style={isMobile ? {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -256,7 +273,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
           >
             GO GLOBAL, FROM HOME
           </motion.p>
-          <motion.h1 
+          <motion.h1 className="gh-hero-title" 
             style={isMobile ? {
               fontFamily: "'Noto Sans SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif",
               fontWeight: 800,
@@ -361,7 +378,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
 
         {/* Social Media Curved Icons - Hidden on Mobile */}
         {!isMobile && (
-          <motion.div style={styles.iconsContainer}
+          <motion.div className="gh-icons" style={styles.iconsContainer}
             initial={{ y: 200, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -432,7 +449,7 @@ const Header = ({ anchorPrefix = '', showHero = true }: { anchorPrefix?: string;
         )}
 
         {/* Hero Image Container */}
-        <motion.div style={isMobile ? {
+        <motion.div className="gh-hero-media" style={isMobile ? {
           width: '100%',
           height: '400px',
           backgroundColor: '#024F47',

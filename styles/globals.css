@@ -727,3 +727,12 @@ section.lp-cat h2.lp-cat-name::before {
 }
 .post-engage .engage-comments .wl-card { padding-bottom: 0.75em; }
 .post-engage .engage-comments .wl-comment { margin-bottom: 1em; }
+
+/* Mobile overflow guard (2026-10-30): desktop-first Growlio artwork (1600px icon
+   track, absolute collages, marquee bands) must never widen the page on phones.
+   overflow-x: clip does not create a scroll container, so sticky headers keep
+   working, unlike overflow-x: hidden on body. */
+@media (max-width: 768px) {
+  html, body { overflow-x: clip; }
+  main { overflow-x: clip; }
+}
