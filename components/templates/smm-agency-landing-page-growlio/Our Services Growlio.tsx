@@ -89,29 +89,29 @@ const Card1Design = ({ data }: { data: CategoryData }) => (
     <div style={{ position: 'absolute', bottom: '-20%', right: '-10%', width: '70%', height: '70%', background: 'radial-gradient(circle, rgba(230,230,250,0.6) 0%, rgba(230,230,250,0) 70%)', borderRadius: '50%', filter: 'blur(40px)' }} />
 
     {/* Content Container */}
-    <div style={{ position: 'absolute', inset: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+    <div className="svc-dash" style={{ position: 'absolute', inset: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
        {/* Top Row */}
-       <div style={{ display: 'flex', gap: '15px', height: '55%', minWidth: 0 }}>
+       <div className="svc-dash-top" style={{ display: 'flex', gap: '15px', height: '55%', minWidth: 0 }}>
           {/* Category Lessons */}
-          <div style={{ flex: 1.2, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '20px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column' }}>
+          <div className="svc-tile svc-count-tile" style={{ flex: 1.2, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '20px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column' }}>
             <p style={{ fontSize: '13px', fontWeight: 600, color: '#1F293B', margin: '0 0 12px 0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>分类教程</p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
-              <h4 style={{ fontSize: '28px', fontWeight: 800, margin: 0, color: '#0E162A', whiteSpace: 'nowrap' }}>{data.count} 篇</h4>
-              <div style={{ display: 'flex', alignItems: 'center', color: '#10B881', fontSize: '12px', fontWeight: 700, whiteSpace: 'nowrap' }}>
+            <div className="svc-count-row" style={{ display: 'flex', alignItems: 'center', gap: '12px', minWidth: 0 }}>
+              <h4 className="svc-count" style={{ fontSize: '28px', fontWeight: 800, margin: 0, color: '#0E162A', whiteSpace: 'nowrap' }}>{data.count} 篇</h4>
+              <div className="svc-count-date" style={{ display: 'flex', alignItems: 'center', color: '#10B881', fontSize: '12px', fontWeight: 700, whiteSpace: 'nowrap' }}>
                 <ArrowUpIcon /> {data.shortDate} 最新
               </div>
             </div>
-            <div style={{ display: 'flex', gap: '8px', marginTop: 'auto', alignItems: 'flex-end', height: '60px' }}>
+            <div className="svc-bars" style={{ display: 'flex', gap: '8px', marginTop: 'auto', alignItems: 'flex-end', height: '60px' }}>
               {[25, 35, 30, 45, 60, 80, 100].map((h, i) => (
                 <div key={i} style={{ flex: 1, minWidth: 0, height: `${h}%`, background: 'linear-gradient(to top, #F572B7, #FA7185)', borderRadius: '4px', opacity: i > 3 ? 1 : 0.6 }} />
               ))}
             </div>
           </div>
           {/* Update Calendar */}
-          <div style={{ flex: 1, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)' }}>
+          <div className="svc-tile svc-dates-tile" style={{ flex: 1, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)' }}>
             <p style={{ fontSize: '13px', fontWeight: 600, color: '#1F293B', margin: '0 0 16px 0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>更新日历</p>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#65758B', marginBottom: '12px', fontWeight: 600, minWidth: 0 }}>
-              {data.dates.slice(0, 5).map((d, i) => <span key={i} style={{ whiteSpace: 'nowrap' }}>{d}</span>)}
+            <div className="svc-dates-row" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '11px', color: '#65758B', marginBottom: '12px', fontWeight: 600, minWidth: 0 }}>
+              {data.dates.slice(0, 5).map((d, i) => <span key={i} className="svc-date" style={{ whiteSpace: 'nowrap' }}>{d}</span>)}
             </div>
             <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
               <div style={{ width: '35%', height: '16px', backgroundColor: '#F572B7', borderRadius: '8px' }}></div>
@@ -130,9 +130,9 @@ const Card1Design = ({ data }: { data: CategoryData }) => (
           </div>
        </div>
        {/* Bottom Row */}
-       <div style={{ display: 'flex', gap: '15px', height: '45%', minWidth: 0 }}>
+       <div className="svc-dash-bottom" style={{ display: 'flex', gap: '15px', height: '45%', minWidth: 0 }}>
           {/* Category Topics */}
-          <div style={{ flex: 1.2, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+          <div className="svc-tile svc-topics-tile" style={{ flex: 1.2, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <p style={{ fontSize: '13px', fontWeight: 600, color: '#1F293B', margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>分类主题</p>
             <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', minWidth: 0 }}>
               {data.topics.map((topic) => (
@@ -141,10 +141,10 @@ const Card1Design = ({ data }: { data: CategoryData }) => (
             </div>
           </div>
           {/* Latest Tutorials */}
-          <div style={{ flex: 1, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)' }}>
-            <p style={{ fontSize: '13px', fontWeight: 600, color: '#1F293B', margin: '0 0 16px 0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>最新教程</p>
+          <div className="svc-tile svc-latest-tile" style={{ flex: 1, minWidth: 0, backgroundColor: 'white', borderRadius: '16px', padding: '16px', boxShadow: '0 10px 30px rgba(0,0,0,0.03)' }}>
+            <p className="svc-latest-title" style={{ fontSize: '13px', fontWeight: 600, color: '#1F293B', margin: '0 0 16px 0', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>最新教程</p>
             {data.checklist.map((item, i) => (
-              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', minWidth: 0 }}>
+              <div key={i} className="svc-check-row" style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px', minWidth: 0 }}>
                 <div style={{ width: '16px', height: '16px', borderRadius: '50%', backgroundColor: '#10B881', display: 'flex', justifyContent: 'center', alignItems: 'center', flexShrink: 0 }}>
                   <CheckIcon />
                 </div>
@@ -715,6 +715,22 @@ const Services = () => {
   if (isMobile) {
     return (
       <div id="services" style={{ width: '100%', backgroundColor: '#FAFADC', padding: '60px 20px', boxSizing: 'border-box' }}>
+        <style>{`
+          @media (max-width: 768px) {
+            #services .svc-dash { inset: 12px !important; gap: 10px !important; }
+            #services .svc-dash-top { gap: 10px !important; }
+            #services .svc-dash-bottom { gap: 10px !important; }
+            #services .svc-tile { overflow: hidden !important; padding: 12px !important; }
+            #services .svc-count-row { flex-wrap: wrap !important; gap: 6px !important; }
+            #services .svc-count { font-size: 22px !important; }
+            #services .svc-count-date { font-size: 11px !important; white-space: normal !important; }
+            #services .svc-bars { height: 48px !important; }
+            #services .svc-dates-row { flex-wrap: wrap !important; justify-content: flex-start !important; gap: 4px 8px !important; font-size: 10px !important; margin-bottom: 10px !important; }
+            #services .svc-date { white-space: normal !important; }
+            #services .svc-latest-title { margin-bottom: 10px !important; }
+            #services .svc-check-row { margin-bottom: 6px !important; }
+          }
+        `}</style>
         {/* Header Section */}
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', marginBottom: '60px' }}>
           <div style={styles.pillRow}>
