@@ -23,8 +23,8 @@ export default function ContactPage() {
           </p>
           <h2>邮箱</h2>
           <p>
-            联系邮箱（上线前由作者确认后填写）：
-            <strong>待补充</strong>。来信请注明文章标题与链接，
+            联系邮箱：<strong>thisontran58@gmail.com</strong>。
+            来信请注明文章标题与链接，
             以及你遇到的具体问题或最新官方说明，作者会按收到的顺序处理。
           </p>
           <h2>请勿通过本站办理以下事项</h2>

@@ -63,9 +63,9 @@ function blogPostingLd(article: Article, canonical: string) {
     },
     image: [coverAbsolute(article)],
     author: {
-      '@type': 'Organization',
-      name: '出海实操教程',
-      url: SITE_URL,
+      '@type': 'Person',
+      name: 'jianyunyi',
+      url: `${SITE_URL}/about`,
     },
     publisher: {
       '@type': 'Organization',
