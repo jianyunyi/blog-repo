@@ -179,6 +179,11 @@ async function main() {
     const m = file.match(/^(\d{4}-\d{2}-\d{2})/);
     const date = m ? m[1] : '';
     const slug = slugify(path.basename(file, '.md'));
+    // updated: optional explicit marker in the md body, e.g. "更新于：2026-10-31"
+    // or "最后核实：2026-10-31". Absent marker = no updated date is shown
+    // (never backfilled from the publish date).
+    const um = text.match(/(?:更新于|最后核实|最后更新)[:：]\s*(\d{4}-\d{2}-\d{2})/);
+    const updated = um ? um[1] : undefined;
 
     // cover: first markdown image, else the generated cover in assets/img/covers/
     const firstImg = text.match(/!\[[^\]]*\]\(([^)]+)\)/);
@@ -192,6 +197,7 @@ async function main() {
     articles.push({
       slug,
       date,
+      updated,
       title,
       lang: isEn ? 'en' : 'zh-CN',
       isEn,

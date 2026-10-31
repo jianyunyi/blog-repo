@@ -56,6 +56,7 @@ function blogPostingLd(article: Article, canonical: string) {
     headline: article.title,
     description: article.excerpt,
     datePublished: article.date,
+    ...(article.updated ? { dateModified: article.updated } : {}),
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': canonical,
@@ -96,6 +97,12 @@ export default async function PostPage({
       <article className="post">
         <div className="meta">
           <time dateTime={article.date}>{article.date}</time>
+          {article.updated && article.updated !== article.date ? (
+            <>
+              {' · 最后更新 '}
+              <time dateTime={article.updated}>{article.updated}</time>
+            </>
+          ) : null}
         </div>
         {/* markdown HTML: <h1> + cover + body, images rewritten to /img/*.webp */}
         <div dangerouslySetInnerHTML={{ __html: html }} />

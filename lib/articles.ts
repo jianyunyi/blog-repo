@@ -3,6 +3,8 @@ import manifest from '@/data/articles.json';
 export interface Article {
   slug: string;
   date: string;
+  /** Optional explicit update/verification date, from an 更新于/最后核实 marker in the md. Absent = not shown. */
+  updated?: string;
   title: string;
   lang: 'zh-CN' | 'en';
   isEn: boolean;

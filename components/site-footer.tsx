@@ -3,6 +3,11 @@ export function SiteFooter() {
   return (
     <footer className="site-footer">
       <p className="foot-brand">出海实操教程 · Going Global Tutorials</p>
+      <nav className="foot-links" aria-label="本站 / Site">
+        <a href="/about">关于本站</a>
+        <a href="/contact">联系方式</a>
+        <a href="/privacy">隐私政策</a>
+      </nav>
       <nav className="foot-links" aria-label="友情链接 / Friends">
         <a href="https://digiboy.xyz" rel="noopener">
           出海第一课
