@@ -7,3 +7,5 @@ out/
 public/img/
 data/articles.json
 growlio-src/
+
+tsconfig.tsbuildinfo
