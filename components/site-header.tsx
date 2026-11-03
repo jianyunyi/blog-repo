@@ -33,9 +33,17 @@ export function SiteHeader() {
             <>
               <a href="#zh">中文</a>
               <a href="#en">English</a>
+              <a href="https://cs-tool.us.ci/" target="_blank" rel="noopener">
+                工具直达
+              </a>
             </>
           ) : (
-            <a href="/">← 首页 Home</a>
+            <>
+              <a href="/">← 首页 Home</a>
+              <a href="https://cs-tool.us.ci/" target="_blank" rel="noopener">
+                工具直达
+              </a>
+            </>
           )}
         </nav>
       </div>

@@ -2,6 +2,7 @@
 
 import HeaderGrowlio from "@/components/templates/smm-agency-landing-page-growlio/Header Growlio";
 import AboutUsGrowlio from "@/components/templates/smm-agency-landing-page-growlio/About Us Growlio";
+import CsToolBanner from "@/components/cs-tool-banner";
 import OurServicesGrowlio from "@/components/templates/smm-agency-landing-page-growlio/Our Services Growlio";
 import CaseStudiesGrowlio from "@/components/templates/smm-agency-landing-page-growlio/Case Studies Growlio";
 import WhyChooseUsGrowlio from "@/components/templates/smm-agency-landing-page-growlio/Why Choose Us Growlio";
@@ -16,6 +17,7 @@ export default function Home() {
     <main className="min-h-screen">
       <HeaderGrowlio />
       <AboutUsGrowlio />
+      <CsToolBanner />
       <OurServicesGrowlio />
       <CaseStudiesGrowlio />
       <WhyChooseUsGrowlio />

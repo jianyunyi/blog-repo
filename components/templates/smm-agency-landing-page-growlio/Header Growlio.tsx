@@ -13,6 +13,7 @@ const anchorHref = (href: string, prefix: string) =>
 const NAV_ITEMS = [
   { label: '教程分类', href: '/categories' },
   { label: '最新文章', href: '/articles' },
+  { label: '工具直达', href: 'https://cs-tool.us.ci/' },
   { label: '常见问题', href: '#faq' },
 ];
 
