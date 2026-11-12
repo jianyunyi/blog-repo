@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { site, sortDesc, SITE_URL, type Article } from '@/lib/articles';
 import { PostCard } from '@/components/post-card';
+import { JsonLd } from '@/components/json-ld';
 
 export const metadata: Metadata = {
   title: '最新文章 · 出海实操教程',
@@ -14,7 +15,20 @@ export const metadata: Metadata = {
   },
 };
 
-/** All 61 posts (zh + en), newest first — the same data/articles.json the homepage uses. */
+const collectionPageLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: '最新文章 · 出海实操教程',
+  description: `本站全部 ${site.articles.length} 篇出海实操教程，按日期倒序。`,
+  url: `${SITE_URL}/articles`,
+  isPartOf: {
+    '@type': 'WebSite',
+    name: '出海实操教程',
+    url: SITE_URL,
+  },
+};
+
+/** All posts (zh + en), newest first — the same data/articles.json the homepage uses. */
 const posts: Article[] = sortDesc(site.articles);
 const zhCount = posts.filter((a) => !a.isEn).length;
 const enCount = posts.length - zhCount;
@@ -22,6 +36,7 @@ const enCount = posts.length - zhCount;
 export default function ArticlesPage() {
   return (
     <div className="lp-page">
+      <JsonLd data={collectionPageLd} />
       <section className="lp-hero">
         <span className="lp-kicker">全部 {posts.length} 篇 · 持续更新</span>
         <h1

@@ -1,3 +1,7 @@
+---
+category: vps-server
+---
+
 # 免费出海策略（2）：Cloudflare Tunnel——没公网 IP，也能把本地服务变成 https
 
 > 一句话导读：家里电脑或便宜 VPS 上跑的网站/机器人后台，没有公网 IP、不能开防火墙端口，照样能变成 `https://xxx.你的域名.com` 公开访问。Cloudflare Tunnel 免费、自动上 HTTPS，还能给敏感后台加一道邮箱登录墙。

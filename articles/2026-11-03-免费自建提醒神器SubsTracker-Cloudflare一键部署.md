@@ -1,3 +1,7 @@
+---
+category: vps-server
+---
+
 # 订阅续费、生日纪念日总忘？免费自建一个提醒神器 SubsTracker：Cloudflare 一键部署保姆级教程
 
 ![图1](img/2026-11-03-substracker/img1.png)

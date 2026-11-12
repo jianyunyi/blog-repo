@@ -1,3 +1,7 @@
+---
+category: vps-server
+---
+
 # 免费 4 核 4G 我的世界服务器：MCServerHost 免费套餐，香在哪、坑在哪
 
 **一句话导读**：发现一个可以白嫖的 Minecraft 游戏服务器：MCServerHost 的免费套餐给到 4 核 CPU、4 GB 内存、10 GB 硬盘（帖主口径，官网确认免费版为 4 GB 内存），免绑卡、注册后 60 秒内开好服。

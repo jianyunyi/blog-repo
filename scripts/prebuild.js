@@ -70,6 +70,114 @@ function makeExcerpt(text, maxLen = 150) {
   return ex;
 }
 
+/* ---------- categories + FAQ (P0 SEO) ---------- */
+
+/** The site's six topic categories (same keys as lib/site-content.ts CATEGORIES). */
+const CATEGORY_KEYS = ['domain-email', 'vps-server', 'tax-id', 'sim-keep', 'payment', 'ai-tools'];
+
+/**
+ * Fallback keyword rules over title+slug — the old regex classification.
+ * Used ONLY when a post has no explicit `category:` frontmatter.
+ * Kept in sync with lib/site-content.ts CATEGORIES[].match.
+ */
+const CATEGORY_RULES = [
+  { key: 'domain-email', match: /域名(邮箱|与)|免费域名|邮箱|Zoho|Forward|is-a\.dev|afraid|Northwest|Freenom/i },
+  { key: 'vps-server', match: /VPS|免费云|甲骨文|Oracle|AWS/i },
+  { key: 'tax-id', match: /税号(申请|实录|在线|免费)|EIN|TIN|EORI/ },
+  { key: 'sim-keep', match: /eSIM|号码|手机号|TextNow|Google Voice|TextFree|Giffgaff|VOXI/i },
+  { key: 'payment', match: /Wise|收款|多币种|银行账户|数字银行|开户|境外银行|支付/ },
+  { key: 'ai-tools', match: /\bAI\b|智能体|Copilot|赠金|MiMo|Dify|n8n|Flowise|扣子|Coze|会员/ },
+];
+
+/**
+ * Strip an optional YAML frontmatter block (`---` ... `---`) at the very
+ * top of a markdown source. Returns { data, body }; data holds the parsed
+ * `key: value` pairs (only `category` is used today).
+ * New posts MUST carry `category: <one of the six keys>` here; posts
+ * without it fall back to CATEGORY_RULES and are listed in the build log.
+ * Mirrored in lib/markdown.ts (render-time strip) — keep the two in sync.
+ */
+function parseFrontmatter(text) {
+  const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!m) return { data: {}, body: text };
+  const data = {};
+  for (const line of m[1].split('\n')) {
+    const kv = line.match(/^\s*([A-Za-z0-9_-]+)\s*:\s*(.+?)\s*$/);
+    if (kv) data[kv[1]] = kv[2].replace(/^['"]|['"]$/g, '');
+  }
+  return { data, body: text.slice(m[0].length) };
+}
+
+/** Resolve one article's category: explicit frontmatter wins, else keyword rules. */
+function resolveCategory(title, slug, explicit) {
+  if (explicit) {
+    if (CATEGORY_KEYS.includes(explicit)) return { category: explicit, explicit: true };
+    console.error(`[prebuild] WARNING: unknown category "${explicit}" — falling back to keyword rules`);
+  }
+  for (const r of CATEGORY_RULES) {
+    if (r.match.test(title) || r.match.test(slug)) return { category: r.key, explicit: false };
+  }
+  return { category: null, explicit: false };
+}
+
+/** Strip markdown inline markup to plain text (for FAQ answers + excerpts). */
+function plainText(s) {
+  return s
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/\[([^\]]*)\]\([^)]*\)/g, '$1')
+    .replace(/[*_`>#]/g, ' ')
+    .replace(/\|/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+/**
+ * Extract Q&A pairs from a `## ...常见问题...` (or `## FAQ`) section, if any.
+ * Real formats in the stock articles:
+ *   ### Question?            + paragraph answers
+ *   **Q：Question?** / **Q1：...** (+ `A：` answer lines)
+ *   - **Question?** answer   (bullet form)
+ *   **Question?**answer      (inline bold form)
+ * Returns [{ q, a }] with plain-text answers (capped ~500 chars); [] when
+ * the section has no parseable Q&A (e.g. risk lists, not questions).
+ */
+function extractFaq(body) {
+  const lines = body.split('\n');
+  let start = -1;
+  for (let i = 0; i < lines.length; i++) {
+    const h = lines[i].trim();
+    if (/^##\s+.*常见问题/.test(h) || /^##\s*FAQ\s*$/.test(h)) { start = i; break; }
+  }
+  if (start < 0) return [];
+  const faqs = [];
+  let q = null;
+  let buf = [];
+  const flush = () => {
+    if (!q) return;
+    let a = buf.join(' ').replace(/\s+/g, ' ').trim();
+    a = a.replace(/^A\s*[：:]\s*/, '');
+    if (a) faqs.push({ q: q.trim(), a: a.length > 500 ? a.slice(0, 500) + '…' : a });
+    q = null;
+    buf = [];
+  };
+  for (let i = start + 1; i < lines.length; i++) {
+    const raw = lines[i];
+    if (/^##\s/.test(raw)) break;
+    const line = raw.trim();
+    let qm = line.match(/^###\s+(.+?)\s*$/);
+    if (qm) { flush(); q = qm[1]; continue; }
+    qm = line.match(/^\*\*Q\d*\s*[：:]\s*(.+?)\*\*\s*(.*)$/);
+    if (qm) { flush(); q = qm[1]; if (qm[2]) buf.push(plainText(qm[2])); continue; }
+    qm = line.match(/^-\s*\*\*(.+?[？?])\*\*\s*(.*)$/);
+    if (qm) { flush(); q = qm[1]; if (qm[2]) buf.push(plainText(qm[2])); continue; }
+    qm = line.match(/^\*\*(.+?[？?])\*\*\s*(.+)$/);
+    if (qm) { flush(); q = qm[1]; if (qm[2]) buf.push(plainText(qm[2])); continue; }
+    if (q && line) buf.push(plainText(line));
+  }
+  flush();
+  return faqs;
+}
+
 /**
  * Route a markdown image path through the same rules as the old site,
  * but site-absolute (Next serves public/ at /):
@@ -171,9 +279,16 @@ async function main() {
   const articles = [];
   const imgDims = {}; // "/img/..." -> [w, h]  (filled in step 5/6)
   const thumbJobs = []; // {src, out}
+  const noExplicitCategory = [];
+  const noCategoryAtAll = [];
+  let faqArticleCount = 0;
 
   for (const file of mdFiles) {
-    const text = fs.readFileSync(path.join(SRC, file), 'utf-8');
+    const rawText = fs.readFileSync(path.join(SRC, file), 'utf-8');
+    // frontmatter (optional `--- category: <key> ---` block) is stripped
+    // before every other extraction, so it never leaks into titles,
+    // excerpts, images or the rendered article HTML.
+    const { data: fm, body: text } = parseFrontmatter(rawText);
     const isEn = file.endsWith('-en.md');
     const title = extractTitle(text, path.basename(file, '.md'));
     const m = file.match(/^(\d{4}-\d{2}-\d{2})/);
@@ -194,6 +309,16 @@ async function main() {
     // every body image, for dimension collection
     const bodyImgs = [...text.matchAll(/!\[[^\]]*\]\(([^)]+)\)/g)].map((x) => routeImg(x[1]));
 
+    // category: explicit frontmatter wins; else the keyword rules; else null
+    // (null = uncategorized; the build log lists them so they can be backfilled).
+    const { category, explicit } = resolveCategory(title, slug, fm.category);
+    if (!explicit) noExplicitCategory.push(file);
+    if (!category) noCategoryAtAll.push(file);
+
+    // FAQ Q&A pairs from the 常见问题 section, for FAQPage JSON-LD.
+    const faq = extractFaq(text);
+    if (faq.length) faqArticleCount += 1;
+
     articles.push({
       slug,
       date,
@@ -205,6 +330,8 @@ async function main() {
       cover,
       bodyImgs,
       mdFile: file,
+      category,
+      ...(faq.length ? { faq } : {}),
     });
   }
 
@@ -282,26 +409,62 @@ async function main() {
   };
   fs.writeFileSync(path.join(DATA, 'articles.json'), JSON.stringify(manifest, null, 2), 'utf-8');
 
-  /* 8. llms.txt (llmstxt.org format) */
-  const lines = [
-    '> # 出海实操教程 · Going Global Tutorials',
-    '> 手把手实操笔记：域名、支付、税号、eSIM 与 AI 工具 —— 全部当天实测，照着做就能上线。',
+  /* 8. llms.txt (llmstxt.org format): `#` title, summary as a blockquote,
+     `##` sections, `- [title](url): description` items. Only the summary
+     is a quote — the old version prefixed EVERY line with `> `, which
+     turns the whole file into one blockquote and breaks AI parsers. */
+  const SUMMARY =
+    '手把手实操笔记：域名、支付、税号、eSIM 与 AI 工具 —— 全部当天实测，照着做就能上线。';
+  const llms = [
+    '# 出海实操教程 · Going Global Tutorials',
+    `> ${SUMMARY}`,
+    '> ',
+    `> 全文版见 llms-full.txt：${SITE}/llms-full.txt`,
     '',
   ];
   const zhSorted = sortDesc(articles.filter((a) => !a.isEn));
   const enSorted = sortDesc(articles.filter((a) => a.isEn));
-  lines.push(`> ## 中文文章（${zhSorted.length} 篇）`);
-  for (const a of zhSorted) lines.push(`> * [${a.title}](${SITE}/posts/${a.slug}.html): ${a.excerpt}`);
-  lines.push('');
-  lines.push(`> ## English Articles (${enSorted.length})`);
-  for (const a of enSorted) lines.push(`> * [${a.title}](${SITE}/posts/${a.slug}.html): ${a.excerpt}`);
-  lines.push('');
-  fs.writeFileSync(path.join(PUB, 'llms.txt'), lines.join('\n'), 'utf-8');
+  llms.push(`## 中文文章（${zhSorted.length} 篇）`);
+  for (const a of zhSorted) llms.push(`- [${a.title}](${SITE}/posts/${a.slug}.html): ${a.excerpt}`);
+  llms.push('');
+  llms.push(`## English Articles (${enSorted.length})`);
+  for (const a of enSorted) llms.push(`- [${a.title}](${SITE}/posts/${a.slug}.html): ${a.excerpt}`);
+  llms.push('');
+  fs.writeFileSync(path.join(PUB, 'llms.txt'), llms.join('\n'), 'utf-8');
+
+  /* 8b. llms-full.txt: the full text of every article (newest first, zh
+     then en), so AI tools can read the tutorials without fetching 179
+     pages. Body image paths are rewritten to absolute site URLs. */
+  const full = [
+    '# 出海实操教程 · Going Global Tutorials — 全文版',
+    `> ${SUMMARY}`,
+    '> ',
+    `> 本文件包含本站全部 ${articles.length} 篇教程的完整正文，按发布倒序排列；单篇摘要见 llms.txt：${SITE}/llms.txt`,
+    '',
+  ];
+  const absImg = (body) =>
+    body.replace(/\]\((img\/[^)]+)\)/g, (m, p) => `](${SITE}/${routeImg(p).slice(1)})`);
+  for (const a of [...zhSorted, ...enSorted]) {
+    const body = fs.readFileSync(path.join(SRC, a.mdFile), 'utf-8');
+    const { body: stripped } = parseFrontmatter(body);
+    full.push(`## ${a.title}`);
+    full.push('');
+    full.push(absImg(stripped.trim()));
+    full.push('');
+  }
+  fs.writeFileSync(path.join(PUB, 'llms-full.txt'), full.join('\n'), 'utf-8');
+
+  if (noCategoryAtAll.length) {
+    console.error(`[prebuild] WARNING: ${noCategoryAtAll.length} article(s) match no category (add \`category:\` frontmatter):`);
+    for (const f of noCategoryAtAll) console.error('  ' + f);
+  }
 
   console.log(
     `[prebuild] ${articles.length} articles (${manifest.count.zh} zh + ${manifest.count.en} en), ` +
       `${reused} reused WebP assets, ${thumbJobs.length} thumbs via ${manifest.thumb.engine}, ` +
-      `llms.txt/ads.txt/_headers written`,
+      `llms.txt/llms-full.txt/ads.txt/_headers written, ` +
+      `${articles.length - noExplicitCategory.length} explicit categories, ` +
+      `${faqArticleCount} articles with FAQ, ${noCategoryAtAll.length} uncategorized`,
   );
 }
 

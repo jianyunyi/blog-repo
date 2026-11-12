@@ -1,3 +1,7 @@
+---
+category: tax-id
+---
+
 # Lexmount 注册 + Meta Muse 注册完整教程（国内绕过地区限制）
 
 **一句话导读**：Meta Muse 是 Meta 在 2026 年 9 月 8 日公开的个人 AI 代理（号称"世界首个为所有人打造的个人 AI 代理"），模型叫 Muse Spark。

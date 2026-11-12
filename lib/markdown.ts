@@ -85,7 +85,12 @@ function articleImagesPlugin(article: Article) {
 
 export async function renderArticleHtml(article: Article): Promise<string> {
   const mdPath = path.join(SRC_DIR(), article.mdFile);
-  const text = fs.readFileSync(mdPath, 'utf-8');
+  const raw = fs.readFileSync(mdPath, 'utf-8');
+  // Strip the optional YAML frontmatter block (`--- category: x ---`) —
+  // it is metadata, not content; without this the `---` and `category:`
+  // lines would render into the article HTML. Mirrors
+  // scripts/prebuild.js parseFrontmatter — keep the two in sync.
+  const text = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, '');
 
   const processor = unified()
     .use(remarkParse)

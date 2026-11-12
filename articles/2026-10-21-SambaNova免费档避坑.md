@@ -1,3 +1,7 @@
+---
+category: ai-tools
+---
+
 # SambaNova 免费档避坑：名义每天 20 万 token，2026 年实测已大幅缩水——先看清再注册
 
 **一句话导读**：很多"免费 API 清单"里，SambaNova 都被排在前列：美国自研芯片公司、DeepSeek 全家桶、每个模型每天 20 万 token、不用绑卡。

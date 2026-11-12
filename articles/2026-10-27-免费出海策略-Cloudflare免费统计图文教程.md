@@ -1,3 +1,7 @@
+---
+category: vps-server
+---
+
 # 不装 GA、不弹 Cookie 横幅：Cloudflare 免费统计 5 分钟接上你的出海站
 
 **一句话导读：** 只要想知道"有没有人来、从哪来、哪页最火"，Cloudflare Web Analytics 免费就够了——无 Cookie、无指纹，多数情况下不用挂 Cookie 同意横幅。

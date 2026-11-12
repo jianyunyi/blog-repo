@@ -14,6 +14,13 @@ export interface Article {
   coverSize: [number, number];
   thumbSize: [number, number];
   mdFile: string;
+  /** One of the six category keys (lib/site-content.ts CATEGORIES).
+   * From the explicit `category:` frontmatter field when present (P0),
+   * else the prebuild keyword fallback; absent = uncategorized. */
+  category?: string;
+  /** FAQ Q&A pairs extracted from the article's 常见问题 section (P0),
+   * for FAQPage JSON-LD. Absent = the article has no parseable FAQ. */
+  faq?: { q: string; a: string }[];
 }
 
 export interface SiteManifest {

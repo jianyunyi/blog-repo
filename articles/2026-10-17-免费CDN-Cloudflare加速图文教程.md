@@ -1,3 +1,7 @@
+---
+category: vps-server
+---
+
 # Cloudflare 免费 CDN：30 分钟给网站加速、给源站 IP 穿上隐身衣
 
 **一句话导读**：零成本把域名接入 Cloudflare 免费版，全球 CDN 缓存提速 + 无限 DDoS 防护 + 免费 HTTPS，再配三步把源站 IP 彻底藏住——有 VPS 跑网站的创业者必备。

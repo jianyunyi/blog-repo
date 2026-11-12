@@ -1,3 +1,7 @@
+---
+category: vps-server
+---
+
 # alwaysdata 免费主机：带 SSH、无广告，保活规则一次讲清
 
 ![图1](img/2026-10-25-alwaysdata/img1.png)

@@ -1,3 +1,7 @@
+---
+category: sim-keep
+---
+
 # iPhone 一键改定位！WLOC 实测：海外卡 Wi-Fi Calling 这样激活
 
 **一句话导读**：出海工具实测 · 2026年10月19日

@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { HOT_POSTS, oneLineSummary, postHref } from '@/lib/site-content';
