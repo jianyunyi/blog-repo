@@ -80,6 +80,49 @@ function articleImagesPlugin(article: Article) {
     );
     if (idx >= 0) tree.children.splice(idx + 1, 0, coverNode);
     else tree.children.unshift(coverNode);
+
+    // "结论先行" box (P2 GEO): the article's existing excerpt (its
+    // 一句话导读) as the boxed conclusion, plus the test/publish date
+    // and the explicit 最后更新 date when one exists. Template-generated
+    // from manifest data — no per-article edits. Placed right after the
+    // cover so AI readers (and humans) get the conclusion before the body.
+    const metaLine =
+      `实测日期：${article.date}` +
+      (article.updated && article.updated !== article.date
+        ? ` · 最后更新：${article.updated}`
+        : '');
+    const conclusionNode: AnyNode = {
+      type: 'element',
+      tagName: 'aside',
+      properties: { className: ['post-conclusion'] },
+      children: [
+        {
+          type: 'element',
+          tagName: 'p',
+          properties: { className: ['post-conclusion-label'] },
+          children: [{ type: 'text', value: '结论先行' }],
+        },
+        {
+          type: 'element',
+          tagName: 'p',
+          properties: { className: ['post-conclusion-text'] },
+          children: [{ type: 'text', value: article.excerpt }],
+        },
+        {
+          type: 'element',
+          tagName: 'p',
+          properties: { className: ['post-conclusion-meta'] },
+          children: [{ type: 'text', value: metaLine }],
+        },
+      ],
+    };
+    // cover sits at idx+1 (or 0 when there is no <h1>); the box goes
+    // immediately after it.
+    const coverPos =
+      idx >= 0
+        ? tree.children.indexOf(coverNode)
+        : 0;
+    tree.children.splice(coverPos + 1, 0, conclusionNode);
   };
 }
 

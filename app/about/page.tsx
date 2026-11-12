@@ -44,7 +44,8 @@ export default function AboutPage() {
           <p>
             本站作者署名 <strong>jianyunyi</strong>，
             常年在国内实操境外服务开通与使用，文章选题来自本人办过的手续和踩过的坑。
-            联系方式见<a href="/contact">联系方式</a>页。
+            联系邮箱：<strong>thisontran58@gmail.com</strong>，
+            更多联系方式见<a href="/contact">联系方式</a>页。
             如果某篇文章的价格、政策或步骤已经过时，欢迎在该文章下留言指出，
             作者核实后会更新或更正。
           </p>

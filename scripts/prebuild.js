@@ -12,6 +12,11 @@
  *     (slug, date, lang, title, excerpt, cover, per-image width/height).
  *  5. Generate card thumbnails: max-width 640 WebP q70 → public/img/thumbs/
  *     (sharp via npm; sharp is a hard requirement — no fallback).
+ *
+ * New-post rules (P2 SEO, 2026-11-12 — see CONTRIBUTING.md):
+ *  - new slugs are English/pinyin short slugs; old Chinese slugs/URLs never change.
+ *  - a new article (dated after 2026-11-12) with CJK in its slug gets a
+ *    build-log WARNING, never a failure.
  */
 'use strict';
 
@@ -294,6 +299,15 @@ async function main() {
     const m = file.match(/^(\d{4}-\d{2}-\d{2})/);
     const date = m ? m[1] : '';
     const slug = slugify(path.basename(file, '.md'));
+    // Slug rule (P2 SEO): new posts use English/pinyin short slugs; old
+    // Chinese slugs/URLs never change. Warn (never fail) when a NEW
+    // article (dated after 2026-11-12) still uses a Chinese long slug.
+    if (date > '2026-11-12' && /[\u4e00-\u9fff]/.test(slug)) {
+      console.error(
+        `[prebuild] WARNING: new article ${file} uses a Chinese long slug — ` +
+          'new posts should use English/pinyin short slugs (old URLs never change)',
+      );
+    }
     // updated: optional explicit marker in the md body, e.g. "更新于：2026-10-31"
     // or "最后核实：2026-10-31". Absent marker = no updated date is shown
     // (never backfilled from the publish date).
