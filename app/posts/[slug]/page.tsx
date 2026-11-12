@@ -35,7 +35,7 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.excerpt,
-    alternates: { canonical, languages: languagesFor(article.slug, article.lang, SITE_URL) },
+    alternates: { canonical, languages: languagesFor(article.slug, article.lang, SITE_URL, (s) => !!findArticle(s)) },
     openGraph: {
       title: article.title,
       description: article.excerpt,
