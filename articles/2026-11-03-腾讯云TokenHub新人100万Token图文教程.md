@@ -4,6 +4,8 @@ category: ai-tools
 
 # 一个账号白嫖几十个大模型：腾讯云 TokenHub 新人 100 万 Token 全攻略
 
+腾讯云 TokenHub 的新人包适合一句话概括：一个账号，能给几十个模型各领 100 万 Token——DeepSeek、GLM、Kimi、混元等多个模型的 API 一次领齐，跑通调用链路、做对比、做小项目都够用；但活动截至 2026-12-31，额度自领取起 1 年内有效，想零花钱就别开后付费。
+
 > 最后核实：2026-11-03
 > 官方来源：腾讯云 TokenHub 计费文档 https://www.tencentcloud.com/zh/document/product/1300/80423
 > 领取前请以控制台实际页面为准，活动规则以页面公告为准。
