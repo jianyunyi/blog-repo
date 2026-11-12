@@ -212,6 +212,10 @@ img {
 .post-nav-label { display: block; font-family: var(--mono); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--burnt); margin-bottom: 0.3em; }
 .post-nav-title { font-weight: 600; color: var(--link); }
 
+/* "同类对比 →" hub link (P1 SEO: single article → comparison page) */
+.post-hub { max-width: 760px; margin: 2.5em auto 0; padding: 1em 1.5em; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 16px; box-shadow: var(--hard-sm); font-weight: 600; }
+.post-hub a { color: var(--link); }
+
 /* code */
 code {
   font-family: var(--mono);
@@ -666,6 +670,16 @@ section.lp-cat h2.lp-cat-name::before {
   color: #024f47;
   font-weight: 600;
 }
+
+/* per-category landing pages (P1 SEO): intro + FAQ */
+.lp-intro { max-width: 760px; margin: 0 auto 2.2em; }
+.lp-intro p { font-size: 1rem; line-height: 1.9; margin: 0 0 1em; }
+.lp-faq { max-width: 760px; margin: 0 auto 2.6em; padding: 1.4em 1.5em 1.2em; background: var(--surface); border: 1px solid var(--border-strong); border-radius: 16px; box-shadow: var(--hard-sm); }
+.lp-faq-title { font-size: 1.25rem; color: #024f47; margin: 0 0 0.8em; }
+.lp-faq-item { margin: 0 0 1.1em; }
+.lp-faq-item:last-child { margin-bottom: 0; }
+.lp-faq-item h3 { font-size: 1rem; line-height: 1.6; color: #024f47; margin: 0 0 0.35em; }
+.lp-faq-item p { font-size: 0.95rem; line-height: 1.8; margin: 0; }
 
 /* responsive */
 @media (max-width: 640px) {

@@ -1,4 +1,4 @@
-# Forward Email 免费域名邮箱转发图文教程：support@你的域名.com，0 成本收信（2026-10-21）
+# Forward Email 域名邮箱转发：support@你的域名.com 0 成本收信
 
 > 一句话导读：做跨境，support@你的域名.com 这种邮箱一亮出来，客户信任度立刻不一样。Forward Email（forwardemail.net）从 2017 年做到现在，160 万+域名在用，100% 开源——免费版纯转发：域名邮箱收到的信自动转到你已有的 Gmail，无限域名、无限别名，一分钱不花。
 

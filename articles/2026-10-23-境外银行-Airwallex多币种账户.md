@@ -99,3 +99,17 @@
 - Trustpilot Airwallex 评论页（冻结案例实录）：https://www.trustpilot.com/review/airwallex.com
 
 *（播客说明：另搜了一轮中文出海/跨境/独立开发播客（小宇宙、Apple Podcasts、Spotify），未找到与 Airwallex 开户直接相关的单集，故不引用。）*
+
+## 常见问题
+
+### Airwallex 个人能开户吗？
+
+不能。Airwallex 仅支持企业客户，开户要营业执照、董事+UBO 证件与地址证明、业务证明、企业邮箱；审核 1–3 个工作日（香港最快 48 小时）。
+
+### Airwallex 换汇怎么收费？
+
+银行间汇率 +0.5%（主流币种：USD/HKD/CNY/AUD/EUR/GBP/CAD/SGD/CHF/NZD/JPY），其他币种 +1%；120+ 国家/地区本地通道转账 $0 转账费，SWIFT 付款按笔收费。
+
+### Airwallex 安全吗？
+
+它不是银行、无存款保险，别把全部营运资金放在一家。Trustpilot 2.8–2.9/5（2500+ 条评论，2026 年 9–10 月数据），低分集中在合规审查冻结账户、到账延迟、客服回复慢。开户容易保户难，第一笔大额收款前先把合同、发票、资金来源证明备齐。

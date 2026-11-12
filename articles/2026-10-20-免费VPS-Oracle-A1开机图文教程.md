@@ -72,3 +72,17 @@ sudo netfilter-persistent save
 - Oracle 免费注册页（注册流程、绑卡说明）：https://www.oracle.com/cloud/free/
 - Oracle 官方文档 Creating an Instance（选 Ampere 形状、SSH 密钥）：https://docs.oracle.com/en-us/iaas/Content/Compute/Tasks/launchinginstance.htm
 - 2026 年最新额度详解（2C12G 减半、与其他免费 VPS 对比表、防火墙两处开）：https://toolfreebie.com/oracle-free-arm-vps/
+
+## 常见问题
+
+### 甲骨文 A1 免费额度是多少？
+
+免费账号 A1 总量是 2 OCPU + 12GB（每月 1500 OCPU-hours + 9000 GB-hours），另加 200GB 块存储、每月 10TB 出站流量。超了的老实例在 2026 年 6 月那波已被关停，别想着 4C24G。
+
+### 注册甲骨文免费账号要绑卡吗？
+
+要。一张真实信用卡，只做身份验证，$1–2 美元预授权，几天后撤销；不升级就不会扣费。虚拟卡、预付卡会被拒，姓名地址必须和信用卡账单完全一致。
+
+### 一直报 Out of host capacity 怎么办？
+
+这是常态不是拒信：A1 免费池被抢空时就会报这个错。解法是换一个 Availability Domain 试、凌晨或整点去刷、先开 1C6G 占坑再说。

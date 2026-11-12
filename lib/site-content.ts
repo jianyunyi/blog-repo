@@ -237,3 +237,85 @@ export function tierPosts(tier: PathTier): Article[] {
 export function postHref(a: Article): string {
   return `/posts/${a.slug}.html`;
 }
+
+/**
+ * Comparison/hub pages (P1, md articles dated 2026-11-12, one per
+ * comparison). Each hub assembles figures from existing articles only
+ * and links out to them; the per-article "同类对比 →" line below links
+ * single-product articles back to the most relevant hub.
+ *
+ * Order matters: the first matching rule wins, most specific first,
+ * the SMS hub last as the general fallback for eSIM articles.
+ */
+export interface HubLink {
+  slug: string;
+  title: string;
+  /** matched against the article's title + slug */
+  match: RegExp;
+}
+
+export const HUB_LINKS: HubLink[] = [
+  {
+    slug: '2026-11-12-japan-esim-comparison',
+    title: '日本 eSIM 对比：Mobal、Sakura Mobile 与三大旅行卡',
+    match: /日本|Mobal|Sakura/i,
+  },
+  {
+    slug: '2026-11-12-thailand-esim-comparison',
+    title: '泰国 eSIM 对比：AIS 保号卡与亚洲流量包',
+    match: /泰国|AIS/,
+  },
+  {
+    slug: '2026-11-12-free-us-number-comparison',
+    title: '免费美国号码三条路对比：TextNow、Google Voice、TextFree',
+    match: /TextNow|Google Voice|TextFree/,
+  },
+  {
+    slug: '2026-11-12-us-esim-comparison',
+    title: '美国 eSIM 对比：Visible 与三大运营商 30 天试用',
+    match: /Visible|美国三大运营商/,
+  },
+  {
+    slug: '2026-11-12-airalo-holafly-nomad-comparison',
+    title: 'Airalo vs Holafly vs Nomad 对比：无限流量三家实测',
+    match: /Airalo|Holafly|Nomad/,
+  },
+  {
+    slug: '2026-11-12-uk-number-keeping-comparison',
+    title: '英国手机号保号对比：Giffgaff、VOXI 与 eSIM.net',
+    match: /Giffgaff|VOXI|英国/,
+  },
+  {
+    slug: '2026-11-12-free-domain-comparison',
+    title: '免费域名对比：eu.org、pp.ua、DuckDNS、dpdns',
+    match:
+      /eu\.org|pp\.ua|DuckDNS|dpdns|is-a\.dev|afraid|DigitalPlat|HapDNS|pu\.gy|lovie\.me|devs\.li|Freenom|us\.kg/,
+  },
+  {
+    slug: '2026-11-12-free-vps-comparison',
+    title: '免费 VPS 对比：Oracle A1、GCP e2-micro 与 AWS',
+    match: /Oracle|甲骨文|GCP|e2-micro|AWS|ASCS|三丰云|Serv00|免费 ?VPS/,
+  },
+  {
+    slug: '2026-11-12-wise-airwallex-revolut-comparison',
+    title: 'Wise vs Airwallex vs Revolut 对比：跨境收款三家实测',
+    match: /Wise|Airwallex|Revolut/,
+  },
+  {
+    slug: '2026-11-12-sms-esim-comparison',
+    title: '能收短信验证码的 eSIM 总对比：10 种方案实测',
+    match: /收验证码|收短信|验证码|短信|保号|号码|接码|eSIM/i,
+  },
+];
+
+/** The hub page for one article, if any. Hub pages themselves never
+ *  link to a hub (no self-links); articles with no relevant hub get
+ *  no "同类对比" line rather than a forced one. */
+export function hubFor(a: Article): HubLink | undefined {
+  if (HUB_LINKS.some((h) => h.slug === a.slug)) return undefined;
+  return HUB_LINKS.find((h) => h.match.test(a.title) || h.match.test(a.slug));
+}
+
+export function hubHref(hub: HubLink): string {
+  return `/posts/${hub.slug}.html`;
+}

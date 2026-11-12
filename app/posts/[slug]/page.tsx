@@ -13,7 +13,7 @@ import { renderArticleHtml } from '@/lib/markdown';
 import { languagesFor } from '@/lib/hreflang-pairs';
 import { JsonLd } from '@/components/json-ld';
 import { PostEngagement } from '@/components/post-engagement';
-import { categoryOf, postsInCategory, postHref } from '@/lib/site-content';
+import { categoryOf, postsInCategory, postHref, hubFor, hubHref } from '@/lib/site-content';
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
   const { site } = await import('@/lib/articles');
@@ -97,7 +97,7 @@ function breadcrumbLd(article: Article, canonical: string) {
       '@type': 'ListItem',
       position: 2,
       name: cat.name,
-      item: `${SITE_URL}/categories#${cat.key}`,
+      item: `${SITE_URL}/categories/${cat.key}`,
     });
   } else {
     items.push({
@@ -176,6 +176,7 @@ export default async function PostPage({
   const related = relatedPosts(article);
   const { prev, next } = prevNext(article);
   const cat = categoryOf(article);
+  const hub = hubFor(article);
 
   return (
     <>
@@ -195,6 +196,17 @@ export default async function PostPage({
         {/* markdown HTML: <h1> + cover + body, images rewritten to /img/*.webp */}
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </article>
+      {/* "同类对比 →" hub link (P1): the most relevant comparison page
+          for this article, template-mapped in lib/site-content.ts
+          (hubFor). Hub pages themselves and articles with no relevant
+          hub show nothing — never a forced or self link. */}
+      {hub ? (
+        <nav className="post-hub" aria-label="同类对比">
+          <Link href={hubHref(hub)}>
+            同类对比 → {hub.title}
+          </Link>
+        </nav>
+      ) : null}
       {/* Related + prev/next: every article now links onward (≥3 internal
           links — 4 related + up to 2 neighbours), template-generated. */}
       <nav className="post-related" aria-label="相关推荐">

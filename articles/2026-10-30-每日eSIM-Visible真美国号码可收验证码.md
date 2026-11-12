@@ -52,3 +52,17 @@ visible.com（价格与活动以官网实时页面为准；开户与试用均需
 ---
 
 原文首发于 AI 世界进展（cutting-edgetechnology-ai.blogspot.com）：https://cutting-edgetechnology-ai.blogspot.com/2026/10/esim-visibleverizon-25.html
+
+## 常见问题
+
+### Visible 5/月包含什么？
+
+无限流量（Verizon 5G/4G LTE，不含 5G Ultra Wideband，网络繁忙时可能被降优先级）、无限热点（限速 5Mbps）、480p 视频、美国境内无限通话短信，从美国打墨西哥、加拿大无限。
+
+### 在国内能办 Visible 吗？
+
+不能。激活必须人在美国：开户要填美国 ZIP、手机要连上 Verizon 网络激活。先在国内办好、落地美国直接用——做不到，它和旅行 eSIM 的逻辑正好相反。
+
+### Visible 有免费试用吗？
+
+有，15 天免费试用：eSIM 激活、免绑卡、到期自动结束不转付费；试用含一个临时真实号码、无限流量、美国境内无限通话短信、热点 5Mbps。条件是人在美国、近 12 个月没当过 Visible 会员也没用过试用、每台设备 12 个月内只能试一次。试用号码到期不保留，除非转成付费用户。

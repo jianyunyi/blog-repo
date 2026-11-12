@@ -59,7 +59,7 @@ export default function CategoriesPage() {
       </section>
       <nav className="lp-toc" aria-label="分类目录">
         {sections.map(({ cat, posts }) => (
-          <a key={cat.key} href={`#${cat.key}`}>
+          <a key={cat.key} href={`/categories/${cat.key}`}>
             {cat.name} · {posts.length} 篇
           </a>
         ))}

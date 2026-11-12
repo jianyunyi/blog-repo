@@ -70,7 +70,7 @@ const CATEGORY_DATA: CategoryData[] = CATEGORIES.map((category) => {
     newestDate: newest ? newest.date : '',
     shortDate: newest ? newest.date.slice(5) : '',
     desc: newest ? oneLineSummary(newest, 56) : '',
-    href: '/categories#' + category.key,
+    href: '/categories/' + category.key,
     thumb: newest ? `/img/thumbs/${newest.slug}.webp` : '',
     secondThumb: second ? `/img/thumbs/${second.slug}.webp` : '',
     secondTitle: second ? second.title : '',

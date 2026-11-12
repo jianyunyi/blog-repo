@@ -122,3 +122,17 @@ giffgaff 的 eSIM 不走邮寄，流程是：下载 giffgaff App → 注册账�
 - YouTube：giffgaff 携号转网 Three UK https://www.youtube.com/watch?v=Ha-67UQ1glQ
 - Alertify：Giffgaff eSIM 全量开放 https://alertify.eu/giffgaff-esim/
 - Holafly：giffgaff eSIM 指南 https://esim.holafly.com/reviews/giffgaff-uk-esim/
+
+## 常见问题
+
+### Giffgaff 保号要多久用一次？
+
+官方规则是 6 个月没有任何使用，号码停用回收。保号动作半年内做任意一件就行：打一通电话、发一条短信、用一次移动数据、充一次值、买一次套餐。建议设个每 5 个月的重复提醒。
+
+### Giffgaff 最便宜的套餐是多少？
+
+官网 sim-only 页面（2026-10-15 实测）：monthly rolling 最低 2GB £6/月，pay as you go 最低 1GB £6/月。纯保号选最便宜的就行。
+
+### 首充 £10 管十年靠谱吗？
+
+这是非官方玩法：首充 £10 话费余额（不买月套餐），靠余额保号。社区流传的实测口径是“首充 £10 管十年”，但这正是 Giffgaff 2026 年重点清理的用法（“零月租保号卡”），见文末致命警告，别押宝在上面。

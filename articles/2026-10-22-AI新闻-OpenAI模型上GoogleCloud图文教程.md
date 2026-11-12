@@ -2,7 +2,7 @@
 category: ai-tools
 ---
 
-# OpenAI 模型正式登陆 Google Cloud：GPT-6 全家桶进 Model Garden，独立开发者今天能做三件事
+# OpenAI 模型登陆 Google Cloud：GPT-6 全家桶进 Model Garden
 
 **一句话导读**：10 月 21 日 Google Cloud 官宣——OpenAI 的 GPT-6 Astra / GPT-6.1 Sol / GPT-6 Luna 和 Codex 全都要上架 Model Garden。现在还是企业私有预览，但填表排队、提前备好云项目，你今天就能动手。
 
