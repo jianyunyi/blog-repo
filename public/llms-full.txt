@@ -12997,9 +12997,7 @@ IRS 在线申请要 SSN 或 ITIN，没有就走不了网申。正确姿势：填
 
 # 每日 eSIM | Orange Travel：法国官方出品，带真实号码、能收短信的全业务 eSIM
 
-**一句话导读**：h1>每日 eSIM | Orange Travel：法国官方出品，带真实号码、能收短信的全业务 eSIM
-
-h1>每日 eSIM | Orange Travel：法国官方出品，带真实号码、能收短信的全业务 eSIM
+**一句话导读**：每日 eSIM | Orange Travel：法国官方出品，带真实号码、能收短信的全业务 eSIM
 
 「每日 eSIM」每天介绍一款 pay as you go / 预付费 / 有免费试用的 eSIM。只讲干货：多少钱、能不能收验证码、适合谁。今天第八期，主角是法国电信巨头 Orange 官方的旅游 eSIM——Orange Travel，200+ 目的地一张卡搞定，关键是它带真实电话号码。
 
