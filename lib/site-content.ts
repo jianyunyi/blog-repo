@@ -56,7 +56,7 @@ export const CATEGORIES: Category[] = [
     key: 'ai-tools',
     name: 'AI工具',
     label: 'AI工具',
-    match: /\bAI\b|智能体|Copilot|赠金|MiMo|Dify|n8n|Flowise|扣子|Coze|会员/,
+    match: /\bAI\b|智能体|Copilot|赠金|MiMo|Dify|n8n|Flowise|扣子|Coze|会员/i,
   },
 ];
 

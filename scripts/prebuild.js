@@ -86,7 +86,7 @@ const CATEGORY_RULES = [
   { key: 'tax-id', match: /税号(申请|实录|在线|免费)|EIN|TIN|EORI/ },
   { key: 'sim-keep', match: /eSIM|号码|手机号|TextNow|Google Voice|TextFree|Giffgaff|VOXI/i },
   { key: 'payment', match: /Wise|收款|多币种|银行账户|数字银行|开户|境外银行|支付/ },
-  { key: 'ai-tools', match: /\bAI\b|智能体|Copilot|赠金|MiMo|Dify|n8n|Flowise|扣子|Coze|会员/ },
+  { key: 'ai-tools', match: /\bAI\b|智能体|Copilot|赠金|MiMo|Dify|n8n|Flowise|扣子|Coze|会员/i },
 ];
 
 /**
