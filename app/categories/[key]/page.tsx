@@ -147,7 +147,14 @@ export default async function CategoryPage({
         </div>
       </section>
       <p className="lp-note">
-        回到 <a href="/categories">全部教程分类</a>，或按日期浏览 <a href="/articles">最新文章</a>。
+        {key === 'ai-tools' && (
+          <>
+            想要一份持续更新的免费编程与 API 总清单，见{' '}
+            <a href="/free-ai-coding">免费 AI 编程与 API 清单</a>。{' '}
+          </>
+        )}
+        回到 <a href="/categories">全部教程分类</a>，或按日期浏览{' '}
+        <a href="/articles">最新文章</a>。
       </p>
     </div>
   );

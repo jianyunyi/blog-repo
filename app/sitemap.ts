@@ -37,6 +37,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     ...categoryPages,
+    {
+      // /free-ai-coding — data-driven directory, refreshed weekly by the
+      // free-ai-coding sync workflow; lastModified tracks the build.
+      url: `${SITE_URL}/free-ai-coding`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.8,
+    },
     ...posts,
   ];
 }
