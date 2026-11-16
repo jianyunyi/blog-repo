@@ -96,6 +96,22 @@ const CaseStudy = () => {
 
   const activeData = caseStudiesData[activeStudyIndex];
 
+  /**
+   * Pills: one per topic label, first post wins. The 4 newest posts
+   * often share a topic (e.g. 3 × 手机卡保号), which used to render
+   * the same pill 2–3 times. Clicking a pill still selects its post.
+   */
+  const caseStudyPills = (() => {
+    const seen = new Set<string>();
+    return caseStudiesData
+      .map((pill, index) => ({ name: pill.name, index }))
+      .filter((p) => {
+        if (seen.has(p.name)) return false;
+        seen.add(p.name);
+        return true;
+      });
+  })();
+
   // Real topic categories with real post counts (replaces client logos).
   const renderLogos = () => (
     <>
@@ -212,12 +228,12 @@ const CaseStudy = () => {
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
           >
-            {caseStudiesData.map((pill, index) => {
-              const isActive = index === activeStudyIndex;
+            {caseStudyPills.map((pill) => {
+              const isActive = pill.index === activeStudyIndex;
               return (
                 <div 
-                  key={index}
-                  onClick={() => setActiveStudyIndex(index)}
+                  key={pill.index}
+                  onClick={() => setActiveStudyIndex(pill.index)}
                   style={{ 
                     ...styles.navPill, 
                     backgroundColor: isActive ? '#024E46' : '#F6F7F6',
@@ -407,12 +423,12 @@ const CaseStudy = () => {
             onMouseUp={handleMouseUp}
             onMouseMove={handleMouseMove}
           >
-            {caseStudiesData.map((pill, index) => {
-              const isActive = index === activeStudyIndex;
+            {caseStudyPills.map((pill) => {
+              const isActive = pill.index === activeStudyIndex;
               return (
                 <div 
-                  key={index}
-                  onClick={() => setActiveStudyIndex(index)}
+                  key={pill.index}
+                  onClick={() => setActiveStudyIndex(pill.index)}
                   style={{ 
                     ...styles.navPill, 
                     backgroundColor: isActive ? '#024E46' : '#F6F7F6',
