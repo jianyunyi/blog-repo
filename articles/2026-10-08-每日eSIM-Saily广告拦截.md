@@ -51,10 +51,10 @@ Saily 是 Nord Security（NordVPN 背后的公司）做的旅游 eSIM，覆盖 2
 
 ## 官网
 
-saily.com（价格与套餐以官网实时页面为准）
+[saily.com](https://go.saily.site/aff_c?offer_id=101&aff_id=17845)（价格与套餐以官网实时页面为准）
 
 ## 说明
 
-本文信息基于 esimdb 2026年10月5–6日各国 Saily 页面及 ranzware、myroami、wise 等公开评测整理，截至 2026年10月8日。eSIM 套餐与价格调整频繁，购买前请以官网为准。本文未做实测。
+本文信息基于 esimdb 2026年10月5–6日各国 Saily 页面及 ranzware、myroami、wise 等公开评测整理，截至 2026年10月8日。eSIM 套餐与价格调整频繁，购买前请以官网为准。本文未做实测。披露：本文官网链接为联盟推广链接，通过该链接购买，我可能获得佣金，你支付的价格不变。
 
 「每日 eSIM」每天一款，明天见。
