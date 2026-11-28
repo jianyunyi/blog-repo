@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { site, sortDesc, SITE_URL, type Article } from '@/lib/articles';
-import { PostCard } from '@/components/post-card';
+import { ArticleList } from '@/components/article-list';
 import { JsonLd } from '@/components/json-ld';
 
 export const metadata: Metadata = {
@@ -32,6 +32,9 @@ const collectionPageLd = {
 const posts: Article[] = sortDesc(site.articles);
 const zhCount = posts.filter((a) => !a.isEn).length;
 const enCount = posts.length - zhCount;
+const cards = posts.map(({ slug, date, title, isEn, cover, thumbSize, wordCount, readingMinutes }) => ({
+  slug, date, title, isEn, cover, thumbSize, wordCount, readingMinutes,
+}));
 
 export default function ArticlesPage() {
   return (
@@ -55,11 +58,7 @@ export default function ArticlesPage() {
         </p>
       </section>
       <section aria-label="全部文章">
-        <div className="lp-grid">
-          {posts.map((a) => (
-            <PostCard key={a.slug} article={a} />
-          ))}
-        </div>
+        <ArticleList articles={cards} random />
       </section>
     </div>
   );

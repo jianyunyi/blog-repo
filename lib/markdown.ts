@@ -19,7 +19,7 @@ import remarkGfm from 'remark-gfm';
 import remarkBreaks from 'remark-breaks';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
-import { visit } from 'unist-util-visit';
+import { SKIP, visit } from 'unist-util-visit';
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Article, SiteManifest } from './articles';
@@ -126,6 +126,57 @@ function articleImagesPlugin(article: Article) {
   };
 }
 
+function textContent(node: AnyNode): string {
+  if (node.type === 'text') return node.value ?? '';
+  return (node.children ?? []).map(textContent).join('');
+}
+
+function stableHeadingId(value: string): string {
+  const id = value.normalize('NFKC').toLocaleLowerCase()
+    .replace(/[^\p{L}\p{N}]+/gu, '-')
+    .replace(/^-+|-+$/g, '');
+  return id || 'section';
+}
+
+/** Add deterministic h2/h3 ids and accessible copy controls to fenced code. */
+function articleEnhancementsPlugin() {
+  return (tree: AnyNode) => {
+    const counts = new Map<string, number>();
+    visit(tree, 'element', (node: AnyNode, index: number | undefined, parent: AnyNode) => {
+      if (node.tagName === 'h2' || node.tagName === 'h3') {
+        const base = stableHeadingId(textContent(node));
+        const count = (counts.get(base) ?? 0) + 1;
+        counts.set(base, count);
+        node.properties ??= {};
+        node.properties.id = count === 1 ? base : base + '-' + count;
+      }
+      if (node.tagName === 'pre' && parent && Array.isArray(parent.children) && index !== undefined) {
+        const wrapper: AnyNode = {
+          type: 'element', tagName: 'div', properties: { className: ['code-block'] },
+          children: [
+            { type: 'element', tagName: 'button', properties: { type: 'button', className: ['code-copy-button'], 'aria-label': '复制代码' }, children: [{ type: 'text', value: '复制' }] },
+            node,
+          ],
+        };
+        parent.children[index] = wrapper;
+        return SKIP;
+      }
+    });
+  };
+}
+
+export type ArticleHeading = { id: string; title: string; level: 2 | 3 };
+
+export function extractArticleHeadings(html: string): ArticleHeading[] {
+  const headings: ArticleHeading[] = [];
+  const pattern = /<h([23])\b[^>]*\bid="([^"]+)"[^>]*>([\s\S]*?)<\/h[23]>/g;
+  for (const match of html.matchAll(pattern)) {
+    const title = match[3].replace(/<[^>]*>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+    headings.push({ id: match[2], title, level: Number(match[1]) as 2 | 3 });
+  }
+  return headings;
+}
+
 export async function renderArticleHtml(article: Article): Promise<string> {
   const mdPath = path.join(SRC_DIR(), article.mdFile);
   const raw = fs.readFileSync(mdPath, 'utf-8');
@@ -140,6 +191,7 @@ export async function renderArticleHtml(article: Article): Promise<string> {
     .use(remarkGfm)
     .use(remarkBreaks)
     .use(remarkRehype)
+    .use(articleEnhancementsPlugin)
     .use(() => articleImagesPlugin(article))
     .use(rehypeStringify);
 

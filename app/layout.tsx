@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import '../styles/globals.css';
+import { BackToTop } from '@/components/back-to-top';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://jianyunyi.gv.uy'),
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="zh-CN">
       <head>
+        <link rel="alternate" type="application/rss+xml" title="出海实操教程 RSS" href="/feed.xml" />
         {/* Fonts are self-hosted via @font-face in styles/globals.css
             (/fonts/*.woff2) — no Google Fonts request, so nothing on the page
             blocks on fonts.googleapis.com (unreachable from mainland China). */}
@@ -49,6 +51,7 @@ export default function RootLayout({
         {/* Blog chrome (SiteHeader/main/SiteFooter) lives in app/posts/layout.tsx;
             the Growlio landing page at / renders its own header/footer. */}
         {children}
+        <BackToTop />
       </body>
     </html>
   );

@@ -7,6 +7,8 @@ export function SiteFooter() {
         <a href="/about">关于本站</a>
         <a href="/contact">联系方式</a>
         <a href="/privacy">隐私政策</a>
+        <a href="/friends">友情链接</a>
+        <a href="/feed.xml">订阅 RSS</a>
         <a href="https://cs-tool.us.ci/" target="_blank" rel="noopener">
           工具直达：cs-tool（点官网直接跳转目标网址）
         </a>

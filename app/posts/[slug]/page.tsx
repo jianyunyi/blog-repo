@@ -9,10 +9,12 @@ import {
   enArticles,
   type Article,
 } from '@/lib/articles';
-import { renderArticleHtml } from '@/lib/markdown';
+import { extractArticleHeadings, renderArticleHtml } from '@/lib/markdown';
 import { languagesFor } from '@/lib/hreflang-pairs';
 import { JsonLd } from '@/components/json-ld';
 import { PostEngagement } from '@/components/post-engagement';
+import { ArticleContent } from '@/components/article-content';
+import { Toc } from '@/components/toc';
 import { categoryOf, postsInCategory, postHref, hubFor, hubHref } from '@/lib/site-content';
 
 export async function generateStaticParams(): Promise<{ slug: string }[]> {
@@ -171,6 +173,7 @@ export default async function PostPage({
   if (!article) notFound();
 
   const html = await renderArticleHtml(article);
+  const headings = extractArticleHeadings(html);
   const canonical = `${SITE_URL}/posts/${article.slug}.html`;
   const faqLd = faqPageLd(article);
   const related = relatedPosts(article);
@@ -183,6 +186,7 @@ export default async function PostPage({
       <JsonLd data={blogPostingLd(article, canonical)} />
       <JsonLd data={breadcrumbLd(article, canonical)} />
       {faqLd ? <JsonLd data={faqLd} /> : null}
+      <Toc headings={headings} />
       <article className="post">
         <div className="meta">
           <time dateTime={article.date}>{article.date}</time>
@@ -192,9 +196,10 @@ export default async function PostPage({
               <time dateTime={article.updated}>{article.updated}</time>
             </>
           ) : null}
+          {' · '}{article.wordCount} 字 · 阅读约 {article.readingMinutes} 分钟
         </div>
         {/* markdown HTML: <h1> + cover + body, images rewritten to /img/*.webp */}
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+        <ArticleContent html={html} />
       </article>
       {/* "同类对比 →" hub link (P1): the most relevant comparison page
           for this article, template-mapped in lib/site-content.ts
