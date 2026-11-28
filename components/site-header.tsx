@@ -36,6 +36,7 @@ export function SiteHeader() {
               <a href="https://cs-tool.us.ci/" target="_blank" rel="noopener">
                 工具直达
               </a>
+              <a href="/search">搜索</a>
             </>
           ) : (
             <>
@@ -43,6 +44,7 @@ export function SiteHeader() {
               <a href="https://cs-tool.us.ci/" target="_blank" rel="noopener">
                 工具直达
               </a>
+              <a href="/search">搜索</a>
             </>
           )}
         </nav>

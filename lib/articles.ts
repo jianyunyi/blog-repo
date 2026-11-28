@@ -9,6 +9,9 @@ export interface Article {
   lang: 'zh-CN' | 'en';
   isEn: boolean;
   excerpt: string;
+  wordCount: number;
+  readingMinutes: number;
+  keywords: string[];
   /** site-absolute path, e.g. /img/2026-10-21-xxx/step1.webp or /img/covers/<slug>.webp */
   cover: string;
   coverSize: [number, number];
@@ -22,6 +25,8 @@ export interface Article {
    * for FAQPage JSON-LD. Absent = the article has no parseable FAQ. */
   faq?: { q: string; a: string }[];
 }
+
+export type ArticleCardData = Pick<Article, 'slug' | 'date' | 'title' | 'isEn' | 'cover' | 'thumbSize' | 'wordCount' | 'readingMinutes'>;
 
 export interface SiteManifest {
   site: string;

@@ -1,5 +1,4 @@
-import { postHref } from '@/lib/site-content';
-import type { Article } from '@/lib/articles';
+import type { ArticleCardData } from '@/lib/articles';
 
 /**
  * One post card for the second-level listing pages
@@ -13,11 +12,11 @@ import type { Article } from '@/lib/articles';
  * homepage-sampled date/badge colors. Title font is the
  * Growlio Hero main-title font, reused verbatim.
  */
-export function PostCard({ article }: { article: Article }) {
+export function PostCard({ article }: { article: ArticleCardData }) {
   return (
     <a
       className="lp-card"
-      href={postHref(article)}
+      href={'/posts/' + article.slug + '.html'}
       style={{
         background: '#FAFADC',
         border: '1px solid rgba(3, 79, 70, 0.3)',
@@ -61,6 +60,7 @@ export function PostCard({ article }: { article: Article }) {
         >
           {article.title}
         </h3>
+        <p className="lp-reading-meta">{article.wordCount} 字 · 阅读约 {article.readingMinutes} 分钟</p>
       </div>
     </a>
   );

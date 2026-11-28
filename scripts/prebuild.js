@@ -136,6 +136,21 @@ function plainText(s) {
     .trim();
 }
 
+/** Count visible CJK characters and Latin/numeric words for article metadata. */
+function countWords(text) {
+  const visible = plainText(text.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, ''))
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, ' ')
+    .replace(/https?:\/\/\S+/g, ' ');
+  const cjk = visible.match(/[\u3400-\u9fff]/g) || [];
+  const latin = visible.match(/[A-Za-z0-9]+(?:['’.-][A-Za-z0-9]+)*/g) || [];
+  return cjk.length + latin.length;
+}
+
+/** Search terms are taken from the article's own title text only. */
+function titleKeywords(title) {
+  return [...new Set(title.split(/[\s\-—:：,，、·|/()（）【】《》]+/).map((part) => part.trim()).filter(Boolean))];
+}
+
 /**
  * Extract Q&A pairs from a `## ...常见问题...` (or `## FAQ`) section, if any.
  * Real formats in the stock articles:
@@ -332,6 +347,7 @@ async function main() {
     // FAQ Q&A pairs from the 常见问题 section, for FAQPage JSON-LD.
     const faq = extractFaq(text);
     if (faq.length) faqArticleCount += 1;
+    const wordCount = countWords(text);
 
     articles.push({
       slug,
@@ -341,6 +357,9 @@ async function main() {
       lang: isEn ? 'en' : 'zh-CN',
       isEn,
       excerpt: makeExcerpt(text),
+      wordCount,
+      readingMinutes: Math.max(1, Math.ceil(wordCount / 400)),
+      keywords: titleKeywords(title),
       cover,
       bodyImgs,
       mdFile: file,
@@ -422,6 +441,20 @@ async function main() {
     articles: articles.map(({ bodyImgs, ...rest }) => rest),
   };
   fs.writeFileSync(path.join(DATA, 'articles.json'), JSON.stringify(manifest, null, 2), 'utf-8');
+
+  /* 7b. browser-side search index; all fields come from the article manifest. */
+  const termFrequency = new Map();
+  for (const article of articles) {
+    for (const keyword of article.keywords) termFrequency.set(keyword, (termFrequency.get(keyword) || 0) + 1);
+  }
+  const searchIndex = {
+    articles: articles.map((a) => ({
+      slug: a.slug, title: a.title, excerpt: a.excerpt, keywords: a.keywords,
+      date: a.date, category: a.category ?? null, isEn: a.isEn,
+    })),
+    hotTerms: [...termFrequency.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])).slice(0, 12).map(([term]) => term),
+  };
+  fs.writeFileSync(path.join(PUB, 'search-index.json'), JSON.stringify(searchIndex, null, 2), 'utf-8');
 
   /* 8. llms.txt (llmstxt.org format): `#` title, summary as a blockquote,
      `##` sections, `- [title](url): description` items. Only the summary

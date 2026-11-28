@@ -87,6 +87,7 @@ const Footer = ({ anchorPrefix = '' }: { anchorPrefix?: string }) => {
   const navLinks = [
     { label: '教程分类', href: '/categories' },
     { label: '最新文章', href: '/articles' },
+    { label: '站内搜索', href: '/search' },
     { label: '常见问题', href: '#faq' },
     { label: '为什么看这里', href: '#why' },
   ].map((item) => ({ ...item, href: anchorHref(item.href, anchorPrefix) }));
@@ -95,6 +96,8 @@ const Footer = ({ anchorPrefix = '' }: { anchorPrefix?: string }) => {
 
   const siteLinks = [
     { label: '本站 jianyunyi.gv.uy', href: 'https://jianyunyi.gv.uy' },
+    { label: '友情链接', href: '/friends' },
+    { label: '订阅 RSS', href: '/feed.xml' },
     { label: '备份站 jianyunyi.blogspot.com', href: 'https://jianyunyi.blogspot.com' },
     { label: '开始看教程', href: '/articles' },
     { label: '常见问题', href: '#faq' },

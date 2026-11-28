@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 import { CATEGORIES, postsInCategory } from '@/lib/site-content';
 import { CATEGORY_PAGES } from '@/lib/category-pages';
 import { SITE_URL } from '@/lib/articles';
-import { PostCard } from '@/components/post-card';
+import { ArticleList } from '@/components/article-list';
 import { JsonLd } from '@/components/json-ld';
 
 /**
@@ -53,6 +53,9 @@ export default async function CategoryPage({
   const content = CATEGORY_PAGES[key];
   if (!cat || !content) notFound();
   const posts = postsInCategory(key);
+  const cards = posts.map(({ slug, date, title, isEn, cover, thumbSize, wordCount, readingMinutes }) => ({
+    slug, date, title, isEn, cover, thumbSize, wordCount, readingMinutes,
+  }));
   const canonical = `${SITE_URL}/categories/${key}`;
 
   const collectionPageLd = {
@@ -140,11 +143,7 @@ export default async function CategoryPage({
           </h2>
           <span className="lp-cat-count">{posts.length} 篇实测</span>
         </div>
-        <div className="lp-grid">
-          {posts.map((a) => (
-            <PostCard key={a.slug} article={a} />
-          ))}
-        </div>
+        <ArticleList articles={cards} />
       </section>
       <p className="lp-note">
         {key === 'ai-tools' && (
